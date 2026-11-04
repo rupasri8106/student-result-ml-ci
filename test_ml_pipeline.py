@@ -56,7 +56,7 @@ class TestMLPipeline(unittest.TestCase):
         self.assertEqual(int(prediction), 1)
 
     def test_low_performance_student(self):
-               model = joblib.load("student_result_model.pkl")
+        model = joblib.load("student_result_model.pkl")
 
         sample = pd.DataFrame([{
             "attendance": 55,
