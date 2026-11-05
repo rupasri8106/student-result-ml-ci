@@ -5,6 +5,5 @@
           path: |
             student_result_model.pkl
             metrics.json
-            student_results.csv
           if-no-files-found: error
           retention-days: 7
