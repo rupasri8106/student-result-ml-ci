@@ -1,3 +1,4 @@
+```yaml
 name: Student Result ML CI
 
 on:
@@ -22,7 +23,14 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      # Keep your existing training and testing steps here.
+      - name: Verify ML model and metrics
+        run: |
+          test -f student_result_model.pkl
+          test -f metrics.json
+          echo "ML model and metrics files found successfully"
+
+      - name: Validate metrics JSON
+        run: python -m json.tool metrics.json
 
       - name: Upload validated ML artifacts
         uses: actions/upload-artifact@v6
@@ -31,5 +39,6 @@ jobs:
           path: |
             student_result_model.pkl
             metrics.json
-          if-no-files-found: warn
+          if-no-files-found: error
           retention-days: 7
+```
